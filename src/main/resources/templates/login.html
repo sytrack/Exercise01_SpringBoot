@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>로그인페이지 입니다.</title>
+</head>
+
+<body th:align="center">
+<form method="post">
+<h3>LOGIN</h3>
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+	<tr>
+		<td bgcolor="skyblue" th:text="아이디"></td>
+		<td><input type="text" name="id"/></td>
+	</tr>
+	<tr>
+		<td bgcolor="skyblue" th:text="비밀번호"></td>
+		<td><input type="password" name="pwd"/></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" value="로그인"/>
+			<input type="button" value="회원가입" onclick="location.href='join'"/>
+		</td>
+	</tr>
+</table>
+</form>
+<a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:40px;width:auto"/></a>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+	//906fc42246ea0e1537f08bb8737c9b9b
+	window.Kakao.init("906fc42246ea0e1537f08bb8737c9b9b");
+	
+	function kakaoLogin() {
+		window.Kakao.Auth.login({
+			scope:'account_email, gender',
+			success: function(authObj) {
+				console.log(authObj);
+				window.Kakao.API.request({
+					url:'/v2/user/me', 
+					success: res => {
+						const kakao_account = res.kakao_account;
+						console.log(kakao_account);
+					}
+				});
+			}
+		});
+	}
+</script>
+</body>
+</html>
