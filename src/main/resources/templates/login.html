@@ -28,12 +28,12 @@
 <a href="javascript:kakaoLogin();"><img src="https://www.gb.go.kr/Main/Images/ko/member/certi_kakao_login.png" style="height:40px;width:auto"/></a>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-	//906fc42246ea0e1537f08bb8737c9b9b
-	window.Kakao.init("906fc42246ea0e1537f08bb8737c9b9b");
+	//111f39b26e9c286f54f9f87c0547d3fe
+	window.Kakao.init("111f39b26e9c286f54f9f87c0547d3fe");
 	
 	function kakaoLogin() {
 		window.Kakao.Auth.login({
-			scope:'account_email, gender',
+			scope:'profile_nickname, account_email, gender',
 			success: function(authObj) {
 				console.log(authObj);
 				window.Kakao.API.request({

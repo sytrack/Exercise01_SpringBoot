@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -68,8 +69,23 @@ public class TestController {
 	public String insertMember(Member member) {
 		memberService.insertMember(member);
 		
-		return "redirect:login";
+		return "redirect:map";
 	}
 	
-
+	@GetMapping("/map")
+	public void mapView() {
+		
+	}
+	
+	@GetMapping("/kakaoSuccess")
+	public String kakaoLogin(@RequestParam String code) throws Exception {
+		System.out.println(code);
+		return "redirect:kakaoSuccess";
+	}
 }
+
+
+
+
+
+
